@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: keycloak
+
+server:
+  port: 8087
+
+
+dh:
+  keycloak:
+    serverUrl: http://localhost:8082/
+    realm: master
+    admin:
+      username: admin
+      password: admin
+      clientId: admin-cli
+    gatewayUrl: http://localhost:8090/
+    redirectUri: http://localhost:8090/*
+    company:
+      realm: ecommerce

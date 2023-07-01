@@ -1,0 +1,40 @@
+server:
+  port: 8086
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+spring:
+  application:
+    name: users-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8082/realms/ecommerce
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+      client:
+        registration:
+          keycloak:
+            authorization-grant-type: client_credentials
+            client-id: api-gateway-client
+            client-secret: nbP8ZuJT0FgPd3xHohpv0QnHnXMg3J8r
+        provider:
+          keycloak:
+            token-uri: http://localhost:8082/realms/ecommerce/protocol/openid-connect/token
+
+dh:
+  keycloak:
+    serverUrl: http://localhost:8082/
+    realm: ecommerce
+    username: admin
+    password: admin
+    clientId: backend
+    clientSecret: 9zfKLLyI3wAOkmWuQLU6FHjl7l9lQQqI
